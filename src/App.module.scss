@@ -1,0 +1,30 @@
+.header {
+  height: 50px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10;
+  color: #ffffff !important;
+}
+
+.content {
+  height: calc(100vh - 50px);
+  overflow: hidden;
+  padding: 20px 50px;
+}
+
+.spin {
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.imageContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}

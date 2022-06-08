@@ -5,6 +5,9 @@ import { Country } from './types/country';
 import { Row, Layout, Spin, Col, Typography } from 'antd';
 import SearchList from './components/search-list';
 import CountryDisplay from './components/country-display';
+import WorldMapImg from './assets/world-map.webp';
+import classes from './App.module.scss';
+import { fullHeight, fullWidth } from './styles/inline-globals';
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
@@ -22,32 +25,27 @@ function App() {
 
   return (
     <Layout>
-      <Header style={{ height: '50px' }}>
-        <Title
-          level={2}
-          style={{ color: '#FFF', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 10 }}
-        >
+      <Header className={classes.header}>
+        <Title level={2} className={classes.title}>
           Pace country search
         </Title>
       </Header>
-      <Content style={{ height: 'calc(100vh - 50px)', overflow: 'hidden' }}>
+      <Content className={classes.content}>
         {loading ? (
-          <Spin
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            }}
-          />
+          <Spin className={classes.spin} />
         ) : (
-          <Row style={{ height: '100%' }}>
+          <Row style={fullHeight}>
             {!selectedCountry ? (
-              <Col span={12} style={{ height: '100%' }}>
-                <SearchList countries={data.countries} onSelect={onChange} />
-              </Col>
+              <>
+                <Col span={12} style={fullHeight}>
+                  <SearchList countries={data.countries} onSelect={onChange} />
+                </Col>
+                <Col span={12} className={classes.imageContainer}>
+                  <img style={fullWidth} src={WorldMapImg} alt="World Map" />
+                </Col>
+              </>
             ) : (
-              <Col style={{ height: '100%', width: '100%', padding: '20px 50px' }}>
+              <Col style={fullHeight}>
                 <CountryDisplay country={selectedCountry} goBack={() => setSelectedCountry(null)} />
               </Col>
             )}

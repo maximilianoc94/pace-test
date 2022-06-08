@@ -3,6 +3,7 @@ import { Input } from 'antd';
 import { Country } from '../../types/country';
 import FilterableList from './filterable-list';
 import { Option } from 'antd/lib/mentions';
+import classes from './search-list.module.scss';
 
 interface SearchListProps {
   countries: Country[];
@@ -14,7 +15,7 @@ function SearchList({ countries, onSelect }: SearchListProps): JSX.Element {
   return (
     <>
       <Input
-        style={{ height: '40px' }}
+        className={classes.input}
         allowClear
         placeholder="Country name"
         size="large"
@@ -23,10 +24,10 @@ function SearchList({ countries, onSelect }: SearchListProps): JSX.Element {
           setFilterValue(e.target.value);
         }}
       />
-      <div style={{ display: 'block', height: 'calc(100% - 40px)', overflow: 'auto' }}>
+      <div className={classes.listWrapper}>
         <FilterableList filterValue={filterValue} onSelect={onSelect}>
           {countries.map((country: Country, index: number) => (
-            <Option style={{ width: '100%' }} key={country.name} value={String(index)}>
+            <Option key={country.name} value={String(index)}>
               {country.name}
             </Option>
           ))}
