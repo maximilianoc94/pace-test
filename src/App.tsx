@@ -4,13 +4,14 @@ import GET_ALL_COUNTRIES_INFO from './querys/get-all-countries';
 import { Country } from './types/country';
 import { Row, Layout, Spin, Col, Typography } from 'antd';
 import SearchList from './components/search-list';
+import CountryDisplay from './components/country-display';
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
 function App() {
   const { loading, data } = useQuery(GET_ALL_COUNTRIES_INFO);
-  const [selectedCountry, setSelectedCountry] = useState<Country>();
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
 
   const onChange = React.useCallback(
     (value: string) => {
@@ -41,10 +42,15 @@ function App() {
           />
         ) : (
           <Row style={{ height: '100%' }}>
-            <Col span={12} style={{ height: '100%' }}>
-              <SearchList countries={data.countries} onSelect={onChange} />
-            </Col>
-            <Col span={12}>{/* <SelectedCountryDisplay country={selectedCountry} /> */}</Col>
+            {!selectedCountry ? (
+              <Col span={12} style={{ height: '100%' }}>
+                <SearchList countries={data.countries} onSelect={onChange} />
+              </Col>
+            ) : (
+              <Col style={{ height: '100%', width: '100%', padding: '20px 50px' }}>
+                <CountryDisplay country={selectedCountry} goBack={() => setSelectedCountry(null)} />
+              </Col>
+            )}
           </Row>
         )}
       </Content>

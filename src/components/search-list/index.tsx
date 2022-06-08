@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Space } from 'antd';
+import { Input } from 'antd';
 import { Country } from '../../types/country';
 import FilterableList from './filterable-list';
 import { Option } from 'antd/lib/mentions';

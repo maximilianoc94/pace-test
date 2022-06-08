@@ -5,8 +5,8 @@ export type Country = {
   currency: string;
   languages: {
     name: string;
-  };
+  }[];
   states: {
     name: string;
-  };
+  }[];
 };

@@ -9,7 +9,7 @@ interface FilterableListProps {
 
 type Child = { props: { children: string; value: string } };
 
-function FilterableList({ children, filterValue, onSelect }: FilterableListProps): JSX.Element | null {
+function FilterableList({ children, filterValue, onSelect }: FilterableListProps): JSX.Element {
   return (
     <>
       {React.Children.toArray(children)
